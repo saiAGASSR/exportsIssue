@@ -1,0 +1,53 @@
+
+<% layout('/layouts/boilerplate.ejs') -%> 
+<body>
+    <h1 class="offset-5 mt-5 mb-5">All Listings </h1>
+
+
+        <!-- <form method="GET" action="/listings/new">
+            <button>Create new List</button>
+        </form> -->
+
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1  row-cols-1  allCards ">
+        <%  for (let eachList of allListings ) {  %>
+            <a href="/listings/<%= eachList._id %>"  class="allListingsAnchorTag">
+
+                <div class="card col">
+                    <img 
+                        src="<%= eachList.image %>" 
+                        class="card-img-top" 
+                        alt="Listings" 
+                        style="height: 20rem;"
+                    />
+                        
+                    <div class="card-img-overlay">
+                        </div>
+                    <div class="card-body">
+                       
+                      <p class="card-text">
+                        <b><%= eachList.title %></b>
+                        <br>
+                        <%= eachList.price.toLocaleString('en-IN',{
+                            maximumFractionDigits : 2 ,
+                            style :'currency',
+                            currency : 'INR'
+                        })  %> /night    
+                      </p>
+                    </div>
+                  </div>
+
+            </a>
+            
+    
+        <%   } %>
+
+       
+    </div>
+    <div>
+        <form method="POST" action="/listings?_method=DELETE">
+            <button class="btn btn-danger offset-5 mb-5" disabled  >Delete all listings </button>
+        </form>
+    </div>
+
+</body> 

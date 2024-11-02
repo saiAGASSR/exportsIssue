@@ -1,0 +1,21 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+
+<!-- <div class="row justify-content-center" style="height: 60vh; position: relative;" > -->
+<div class="row justify-content-center" style="height: 60vh; position: relative;">
+    <!-- <div class="alert alert-danger col-6 offset-3 mt-5" role="alert" style="position: absolute; top: 50%; transform: translateY(-50%); text-align: center;" > -->
+    <div class="alert alert-danger col-6" role="alert" style="position: absolute; top: 50%; transform: translateY(-50%); text-align: center;">
+        <!-- <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg> -->
+        <h4>
+            
+            <%= err.message %>
+        </h4>    
+    </div>
+
+
+    <!-- <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+          An example warning alert with an icon
+        </div>
+      </div> -->
+</div>

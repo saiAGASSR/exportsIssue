@@ -1,0 +1,94 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+
+        <h1>Add your Listing </h1>
+
+
+        <form method="post" action="/listings" novalidate class="needs-validation">
+
+
+
+            <div class="mb-3">
+                <label for="title"  class="form-label"> Enter the title </label>
+                <input  class="form-control"  type="text" name="title" placeholder="Enter catchy Title" required>
+                <div class="valid-feedback">
+                    Title looks good                
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the title 
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description"  class="form-label">  add your description</label>
+                <textarea class="form-control"  type="text" name="description" placeholder="Description" required></textarea>
+                <div class="valid-feedback">
+                    Description looks good               
+                </div>
+                <div class="invalid-feedback">
+                    Please fill the description
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image"  class="form-label">Enter your image url </label>
+                <input class="form-control"  type="text" name="image" placeholder="enter image url / link " required>
+                <div class="valid-feedback">
+                    looks good              
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the image url 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4" >
+
+                    <label for="price"  class="form-label"> Enter the price  </label>
+                    <input  class="form-control" type="number" name="price" placeholder="1200" required>
+                    <div class="valid-feedback">
+                        looks fine            
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter the price
+                    </div>   
+                </div>
+    
+    
+                <div class="mb-3 col-md-8">
+    
+                    <label for="country"  class="form-label">add your country</label>
+                    <input  class="form-control" type="text" name="country" placeholder="INDIA" required>
+                    <div class="valid-feedback">
+                        fine              
+                    </div>
+                    <div class="invalid-feedback">
+                       please enter the country 
+                    </div>  
+                </div>
+    
+            </div>
+
+
+            <div class="mb-3">
+                <label for="location">Add your location </label>
+                <input  class="form-control" type="text" name="location" placeholder="hyderabad,Telangana" required>
+                <div class="valid-feedback">
+                    location looks good               
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the location
+                </div>
+            </div>
+
+            <button class="btn btn-primary mb-3  addListBtn">Add</button>
+            <!-- shift  alt down  to duplicate the line or lines 
+            shift  alt down  -->
+        </form>
+    </div>
+    
+    </div>
+</body>
+

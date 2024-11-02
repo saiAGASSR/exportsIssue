@@ -1,0 +1,106 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+<body>
+    
+    <div class="row">
+
+        <div class="col-8 offset-2">
+            <H1>Edit your Listing </H1>
+
+
+                <!-- https://www.npmjs.com/package/method-override -->
+            <form method="post" action="/listing/edit/<%= editListing._id %>?_method=PUT" class="needs-validation" novalidate>
+
+                <div class="mb3">
+                    <label for="title"  class="form-label"> Edit the title </label>
+                    <input  class="form-control" type="text" name="listing[title]" value="<%= editListing.title %>" required>
+                    <div class="valid-feedback">
+                        Title looks good                
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter the title 
+                    </div>
+                </div>
+
+                <br>
+
+
+                <div class="mb3">
+                    <label for="description"  class="form-label">Edit your description</label>
+                    <textarea class="form-control" type="text" name="listing[description]" required><%= editListing.description %></textarea>
+                    <div class="valid-feedback">
+                        Description looks good               
+                    </div>
+                    <div class="invalid-feedback">
+                        Please fill the description
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="mb3">
+                    <label for="image"  class="form-label">Edit your image url </label>
+                    <input class="form-control" type="text" name="listing[image]" value="<%= editListing.image %>" required>
+                    <div class="valid-feedback">
+                        looks good              
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter the image url 
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+
+                            <div class="mb3 col-md-4">
+                                <label for="price"  class="form-label"> Edit the price  </label>
+                                <input class="form-control" type="number" name="listing[price]" value="<%= editListing.price %>" required>
+                                <div class="valid-feedback">
+                                    looks fine            
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter the price
+                                </div> 
+                            </div>
+
+                            <div class="mb3 col-md-4">
+                                <label for="country"  class="form-label">Edit your country </label>
+                                <input class="form-control" type="text" name="listing[country]" value="<%= editListing.country %>" required>
+                                <div class="valid-feedback">
+                                    fine              
+                                </div>
+                                <div class="invalid-feedback">
+                                   please enter the country 
+                                </div>  
+                            </div>
+            
+                            <div class="mb3 col-md-4">
+                                <label for="location" class="form-label">Edit your location </label>
+                                <input class="form-control" type="text" name="listing[location]" value="<%= editListing.location %>" required>
+                                <div class="valid-feedback">
+                                    location looks good               
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter the location
+                                </div>
+                            </div>                                                  
+                </div>
+                <br>
+                
+
+
+
+                <div class="mb3">
+                    <button class="btn btn-primary mb-3  addListBtn">Save</button>
+                </div>
+                
+                <!-- shift  alt down  to duplicate the line or lines 
+                shift  alt down  -->      
+            </form>
+        </div>
+    </div>
+    
+</body>
+
+<!-- vernerable  code    frontent validation is done but backend should be validated ....... -->
+ 
