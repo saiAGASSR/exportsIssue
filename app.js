@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import Listing from  './models/listings.js'
+import Review from './models/reviews.js';
 import path   from "path";
 import {dirname}   from "path";
 import { fileURLToPath } from "url";
@@ -9,7 +10,8 @@ import methodOverride from 'method-override';
 import ejsMate from 'ejs-mate';
 import customError from './utils/customError.js';
 import wrapAsync from './utils/wrapAsyncError.js';
-import listingSchema from './schema.js';
+import schemaValidations from './schema.js';
+const {listingSchema , reviewSchema} = schemaValidations;
 
 
 
@@ -50,9 +52,24 @@ main()
     })
 
 
-const schemaValidation = (req,res,next) => {
+const listingValidation = (req,res,next) => {
     // let validationResult  = listingSchema.validate(req.body);
     let {error} =  listingSchema.validate(req.body);
+    if(error) {
+        let errorMsg = error.details.map(el=>el.message).join(",");
+        throw new customError(400,errorMsg);
+    }else{
+        next();
+    }
+}
+
+const reviewValidation = (req,res,next) => {
+    console.log("post request received");
+    
+    console.log(req.body);
+    
+    // let validationResult  = listingSchema.validate(req.body);
+    let {error} =  reviewSchema.validate(req.body);
     if(error) {
         let errorMsg = error.details.map(el=>el.message).join(",");
         throw new customError(400,errorMsg);
@@ -216,7 +233,7 @@ app.get("/listings/:id", wrapAsync(async (req,res)=>{
 
 
 // Validating  listing form using joi 
-app.post("/listings", schemaValidation ,wrapAsync(async (req, res, next) => {
+app.post("/listings", listingValidation ,wrapAsync(async (req, res, next) => {
     console.log("new post request ");
     console.log(req.body);
     // Create a new listing object
@@ -269,6 +286,21 @@ app.delete("/listings" ,wrapAsync(async(req,res)=>{
         await Listing.deleteMany({});
         res.redirect("/listings");
 }));
+
+app.post("/listing/:id/review", reviewValidation ,wrapAsync(async (req,res,next)=>{
+        let listingId = req.params.id;
+        console.log('listingId: ', listingId);
+
+
+        let newReview = new Review(req.body.review);
+        console.log('newReview: ', newReview);
+        
+        // result = await Listing.findById(id);
+        console.log('result: ', result);
+
+        res.send("success")
+
+}) )
 
 
 app.all("*",(req,res,next)=>{

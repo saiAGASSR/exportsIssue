@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Review from "./reviews.js";
 
 const Schema  = mongoose.Schema
 
@@ -33,7 +32,7 @@ const listingSchema = new Schema({
     },
     reviews : [{
         type : Schema.Types.ObjectId ,
-        ref : "Review"
+        ref : "Review",
     }]
 })
 

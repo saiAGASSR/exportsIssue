@@ -8,11 +8,11 @@
 
 
             <div class="card col-6 offset-3 mt-3 showListing">
+
+
                 <img src=" <%= singleListing.image  %>" class="card-img-top img-in-single-list" alt="your image">
                 <div class="card-body">
                     <p class="card-text mt-3" >
-                        
-                        <br>
                         <%= singleListing.description  %>   
                         <br>
                             <%= singleListing.price.toLocaleString('en-IN',{
@@ -27,25 +27,58 @@
         
                     </p>
                 </div>
+
+                <div class="btns editDeletebtns   mb-3 mt-3" >
+                    <form  action="/listing/edit/<%= singleListing._id %>">
+            
+                        <button  class="btn editListBtn" >edit</button>
+            
+                    </form>
+            
+                    <form method="post" action="/listing/delete/<%= singleListing._id %>?_method=DELETE">
+            
+                        <button class="btn btn-dark"> Delete</button>
+            
+                    </form>
+            
+                </div>
+            
+            
+
+
+
+                <hr>
+
+                <p> <b> write a review</b></p>
+
+                <form method="post" action="/listing/<%= singleListing._id %>/review" class="needs-validation" novalidate >
+                    <div>
+                        <label for="review[rating]" class="form-label">Give your rating</label>
+                        <input type="range" class="form-range" id="review[rating]" min="1" max="5" required>
+                    </div>
+
+                    <div >
+                        <label for="review[comment]">
+                            enter your comment 
+                        </label>
+                        <br>
+                        <br>
+                        <textarea class="form-control" id="review[comment]" placeholder="leave comments here" required rows="5"></textarea>
+
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter your review
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-dark mt-3">submit</button>
+                </form>
             </div>
     </div>
 
 
 
-    <div class="btns editDeletebtns col-4 offset-3 mb-3">
-        <form  action="/listing/edit/<%= singleListing._id %>">
 
-            <button  class="btn editListBtn" >edit</button>
-
-        </form>
-
-        <form method="post" action="/listing/delete/<%= singleListing._id %>?_method=DELETE">
-
-            <button class="btn btn-dark"> Delete</button>
-
-        </form>
-    </div>
-    
-        
 
 </body>
