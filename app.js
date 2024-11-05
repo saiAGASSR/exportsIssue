@@ -116,7 +116,7 @@ app.get("/listings/:id", wrapAsync(async (req,res)=>{
     let  id     = req.params.id ;
     console.log(id);
     
-    let  singleListing  =  await Listing.findById(id);
+    let  singleListing  =  await Listing.findById(id).populate("reviews");
     console.log(singleListing);
     
     res.render('listings/singleListing' , {singleListing})
@@ -294,11 +294,38 @@ app.post("/listing/:id/review", reviewValidation ,wrapAsync(async (req,res,next)
 
         let newReview = new Review(req.body.review);
         console.log('newReview: ', newReview);
-        
-        // result = await Listing.findById(id);
-        console.log('result: ', result);
+        let listing = await Listing.findById(listingId);
 
-        res.send("success")
+        console.log('listing: ', listing);
+
+        listing.reviews.push(newReview);
+        await newReview.save(),
+        await listing.save();
+
+
+        res.redirect(`/listings/${listingId}`)
+
+}) )
+
+app.delete("/listing/:id/reviews/:reviewId",wrapAsync(async (req,res,next)=>{
+    let listingId = req.params.id;
+    console.log('listingId: ', listingId);
+
+    let reviewId = req.params.reviewId;
+    console.log('reviewId: ', reviewId);
+
+    
+    let listing = await Listing.findById(listingId);
+    console.log('listing: ', listing);
+
+    // let listDelete = await Listing.deleteOne({ $pull : { reviews :  reviewId  } })
+    let listDelete = await Listing.findByIdAndUpdate( listingId , { $pull : { reviews :  reviewId  } })
+    console.log('listDelete: ', listDelete);
+
+    let review = await Review.findById(reviewId);
+    console.log('review: ', review);
+
+    res.redirect(`/listings/${listingId}`)
 
 }) )
 
