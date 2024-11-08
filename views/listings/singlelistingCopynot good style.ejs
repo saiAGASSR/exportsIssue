@@ -27,18 +27,15 @@
         
                     </p>
                 </div>
-                </div>
-                <br>
 
-
-                <div class="btns col-6 offset-3 editDeletebtns   mb-4 " >
-                    <form  action="/listings/edit/<%= singleListing._id %>">
+                <div class="btns editDeletebtns   mb-3 mt-3" >
+                    <form  action="/listing/edit/<%= singleListing._id %>">
             
                         <button  class="btn editListBtn" >edit</button>
             
                     </form>
             
-                    <form method="post" action="/listings/delete/<%= singleListing._id %>?_method=DELETE">
+                    <form method="post" action="/listing/delete/<%= singleListing._id %>?_method=DELETE">
             
                         <button class="btn btn-dark"> Delete</button>
             
@@ -51,10 +48,10 @@
 
 
                 <hr>
-                <div class="col-8 offset-3 mb-3">
+
                 <p> <b> write a review</b></p>
 
-                <form method="post" action="/listing/<%= singleListing._id %>/reviews" class="needs-validation" novalidate >
+                <form method="post" action="/listing/<%= singleListing._id %>/review" class="needs-validation" novalidate >
                     <div>
                         <label for="review[rating]" class="form-label">Give your rating</label>
                         <input type="range" class="form-range" id="review[rating]" name="review[rating]" min="1" max="5" required>
@@ -78,16 +75,13 @@
                     <button class="btn btn-outline-dark mt-3">submit Review</button>
                 </form>
 
-                <hr>
-                
-                
-              
+                <br>
+                <p><b>All reviews</b> <p>
+                <hr> 
                 <div class="allReveiwsDiv row">
-                  <p><b>All reviews</b> <p>
-                
-
+                   
                         <% for(review of singleListing.reviews){ %>
-                            <div class="card col-5 ms-3 mb-3">
+                            <div class="card col-8 mb-3 ms-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Ana</h5>                                     
                                         <p class="card-text"><%=  review.comment  %>  </p>
@@ -99,16 +93,7 @@
                             </div>
                         <%} %>
                 </div>
-                    
-
-                </div>
-
-               
             </div>
     </div>
-
-
-
-
 
 </body>
